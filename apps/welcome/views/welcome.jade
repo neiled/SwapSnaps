@@ -1,0 +1,21 @@
+doctype 5
+html(lang="en")
+  head
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
+    script(src='/javascripts/vendor/jquery.ui.widget.js')
+    script(src='/javascripts/jquery.iframe-transport.js')
+    script(src='/javascripts/jquery.fileupload.js')
+    script(src='/javascripts/dropbox.js')
+    link(rel='stylesheet', href='/stylesheets/base.css')
+
+  body
+    #dropbox
+      p This is the drop box
+
+    form(action="/album", enctype="multipart/form-data", method="post")
+      input(type="text", name="title")
+      br
+      input(type="file", name="upload")
+      br
+      input(type="submit", value="Upload")
+
