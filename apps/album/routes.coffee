@@ -3,9 +3,10 @@ express = require ('express')
 awssum = require('awssum');
 amazon = awssum.load('amazon/amazon');
 inspect = require('eyes').inspector()
+fs = require('fs')
 
 S3 = awssum.load('amazon/s3').S3;
-s3 = new S3('12SZTMN88X2EPZQKY182', 'Qm6E+NSiw0J8WUOxAwiviD7X8rLKcTUX0S+LxoFJ', '8337-9200-2458', amazon.US_WEST_1);
+s3 = new S3('12SZTMN88X2EPZQKY182', 'Qm6E+NSiw0J8WUOxAwiviD7X8rLKcTUX0S+LxoFJ', '8337-9200-2458', amazon.US_EAST_1);
 
 store_s3 = (bucketname, fileName) ->
   fs.stat fileName, (err, file_info) ->
@@ -24,14 +25,14 @@ store_s3 = (bucketname, fileName) ->
       Body: bodyStream
 
     s3.PutObject options, (err, data) ->
-      console.log "\nputting an object to " + bucket + " - expecting success"
+      console.log "\nputting an object to " + bucketname + " - expecting success"
       inspect err, "Error"
       inspect data, "Data"
 
 routes = (app) ->
   app.use(express.bodyParser())
   app.post '/album', (req, res) ->
-    console.log req.files
+    store_s3 'swapsnaps_dev', req.files.upload.path
 
     # form = new formidable.IncomingForm()
     # form.on 'file', (name, file) ->
