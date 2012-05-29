@@ -11,7 +11,7 @@ html(lang="en")
   body
     #dropbox
       p This is the drop box
-
+    p= session_id
     form(action="/album", enctype="multipart/form-data", method="post")
       input(type="text", name="title")
       br
