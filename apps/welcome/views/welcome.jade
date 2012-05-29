@@ -7,15 +7,10 @@ html(lang="en")
     script(src='/javascripts/jquery.fileupload.js')
     script(src='/javascripts/dropbox.js')
     link(rel='stylesheet', href='/stylesheets/base.css')
+    script(type='text/javascript')
+      var session_id = #{session_id}
 
   body
+    #session_id= session_id
     #dropbox
       p This is the drop box
-    p= session_id
-    form(action="/album", enctype="multipart/form-data", method="post")
-      input(type="text", name="title")
-      br
-      input(type="file", name="upload")
-      br
-      input(type="submit", value="Upload")
-

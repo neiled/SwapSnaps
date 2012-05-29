@@ -35,6 +35,7 @@ store_s3 = (bucketname, files) ->
 
 routes = (app) ->
   app.post '/album', (req, res) ->
+    inspect req, "Request"
     store_s3 'swapsnaps_dev', req.files.files
 
     # form = new formidable.IncomingForm()
