@@ -11,9 +11,8 @@ $(function () {
 
   $('#dropbox').bind('fileuploadsubmit', function (e, data) {
       // The example input, doesn't have to be part of the upload form:
-      var input = $('#session_id');
-      console.log("found: " + input.val());
-      data.formData = {session_id: input.val()};
+      console.log("found: " + session_id);
+      data.formData = {session_id: session_id};
   });
 
 });
